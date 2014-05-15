@@ -20,6 +20,7 @@ class ProfanityFilterTest extends \Orchestra\Testbench\TestCase {
 				),
 			)
 		);
+
 	}
 	
 	/**
@@ -47,6 +48,20 @@ class ProfanityFilterTest extends \Orchestra\Testbench\TestCase {
 		$result = $pf->check("I am not a fucking clean string.");
 		
 		$this->assertFalse($result);
+		
+	}
+	
+	/**
+	 * @test
+	 * */
+	public function it_returns_true_for_ambiguous_clean_string()
+	{
+		
+		$pf = new ProfanityFilter($this->setConfig());
+		
+		$result = $pf->check("Scunthorpe");
+		
+		$this->assertTrue($result);
 		
 	}
 	

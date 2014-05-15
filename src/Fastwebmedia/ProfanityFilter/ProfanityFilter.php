@@ -52,7 +52,7 @@ class ProfanityFilter {
 		$badwords = $this->_config['default']['list'];
 		
 		for ($x=0; $x<count($badwords); $x++) {
-        	$badwords[$x] =  '/'.str_ireplace(array_keys($replace),array_values($replace), $badwords[$x]).'/i';
+        	$badwords[$x] =  '/\b'.str_ireplace(array_keys($replace),array_values($replace), $badwords[$x]).'/i';
         }
         
         foreach($badwords as $word):
