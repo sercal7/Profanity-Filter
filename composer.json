@@ -1,0 +1,24 @@
+{
+    "name": "fastwebmedia/profanity-filter",
+    "description": "Profanity filter for checking and sanitizing user input",
+    "authors": [
+        {
+            "name": "Fast Web Media Ltd",
+            "email": "packages@fastwebmedia.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "2.1.*",
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Fastwebmedia\\ProfanityFilter": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
