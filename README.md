@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/fastwebmedia/Profanity-Filter.svg?branch=master)](https://travis-ci.org/fastwebmedia/Profanity-Filter)
+
 ## PHP Profinity Filter
 
 ##How to Intsall
