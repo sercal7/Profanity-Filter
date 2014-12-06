@@ -1,25 +1,26 @@
 <?php namespace Fastwebmedia\ProfanityFilter;
 
-class ProfanityFilter {
-		
-	protected $_config; 
-	
-	public function __construct( $config )
+class ProfanityFilter
+{
+
+	protected $swearWords = [];
+
+	function __construct($swearWords)
 	{
-		$this->_config = $config;
+		$this->swearWords = $swearWords;
 	}
-	
+
 	/**
 	 * check function.
-	 * 
-	 * @param string Input string to be checked
+	 *
+	 * @param string string to be checked
 	 * @access public
 	 * @return boolean Is the input string free of profanity
 	 */
-	public function check( $string )
+	public function check($string)
 	{
 		if (empty($string)) return true;
-		
+
 		$replace = array();
 		$replace['a'] = '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
 		$replace['b'] = '(b|b\.|b\-|8|\|3|ß|Β|β)';
@@ -49,33 +50,34 @@ class ProfanityFilter {
 		$replace['z'] = '(z|z\.|z\-|Ζ)';
 
 		$words = explode(" ", $string);
-		$badwords = $this->_config['default']['list'];
-		
-		for ($x=0; $x<count($badwords); $x++) {
-        	$badwords[$x] =  '/\b'.str_ireplace(array_keys($replace),array_values($replace), $badwords[$x]).'/i';
-        }
-        
-        foreach($badwords as $word):
-        	if(preg_match($word, $string)):
-        		return false;
-        	endif;
-        endforeach;
-	
+		$badwords = $this->swearWords;
+
+
+		for ($x = 0; $x < count($badwords); $x++) {
+			$badwords[$x] = '/\b' . str_ireplace(array_keys($replace), array_values($replace), $badwords[$x]) . '/i';
+		}
+
+		foreach ($badwords as $word):
+			if (preg_match($word, $string)):
+				return false;
+			endif;
+		endforeach;
+
 		return true;
 	}
-	
+
 	/**
 	 * clean function.
-	 * 
-	 * @param string Input string to be cleaned
+	 *
+	 * @param string string to be cleaned
 	 * @param string Replacement character for cleaned input string
 	 * @access public
 	 * @return string Cleaned version of input string
 	 */
-	public function clean( $string, $censorChar = "*")
+	public function clean($string, $censorChar = "*")
 	{
 		if (empty($string)) return "";
-		
+
 		$replace = array();
 		$replace['a'] = '(a|a\.|a\-|4|@|Á|á|À|Â|à|Â|â|Ä|ä|Ã|ã|Å|å|α|Δ|Λ|λ)';
 		$replace['b'] = '(b|b\.|b\-|8|\|3|ß|Β|β)';
@@ -103,16 +105,16 @@ class ProfanityFilter {
 		$replace['x'] = '(x|x\.|x\-|Χ|χ)';
 		$replace['y'] = '(y|y\.|y\-|¥|γ|ÿ|ý|Ÿ|Ý)';
 		$replace['z'] = '(z|z\.|z\-|Ζ)';
-	
-		$badwords = $this->_config['default']['list'];
-		
-		for ($x=0; $x<count($badwords); $x++) {
-            $replacement[$x] = str_repeat($censorChar, strlen($badwords[$x]));
-        	$badwords[$x] =  '/'.str_ireplace(array_keys($replace),array_values($replace), $badwords[$x]).'/i';
-        }
 
-        $newstring = preg_replace($badwords, $replacement, $string);
-        return $newstring;
+		$badwords = $this->swearWords;
+
+		for ($x = 0; $x < count($badwords); $x++) {
+			$replacement[$x] = str_repeat($censorChar, strlen($badwords[$x]));
+			$badwords[$x] = '/' . str_ireplace(array_keys($replace), array_values($replace), $badwords[$x]) . '/i';
+		}
+
+		$newstring = preg_replace($badwords, $replacement, $string);
+		return $newstring;
 	}
 
 }

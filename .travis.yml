@@ -1,4 +1,4 @@
-language: php
+gitlanguage: php
 
 php:
   - 5.3
