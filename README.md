@@ -2,7 +2,7 @@
 
 ## PHP Profinity Filter
 
-##How to Intsall
+##How to Install
 ###Laravel
 Add ```'Fastwebmedia\ProfanityFilter\ProfanityServiceProvider'``` to your providers array.
 
