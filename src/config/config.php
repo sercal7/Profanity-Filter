@@ -996,6 +996,8 @@ return [
     ],
 
     'whitelist' => [
-        'tester'
+        'tester',
+        'space',
+        'spacing'
     ]
 ];
