@@ -7,7 +7,8 @@ class ProfanityServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $this->package('fastwebmedia/profanity-filter');
+        $configPath = __DIR__ . '/../../config/config.php';
+        $this->mergeConfigFrom($configPath, 'profanity-filter');
     }
 
     /**
