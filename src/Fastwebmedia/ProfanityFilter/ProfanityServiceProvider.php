@@ -7,7 +7,7 @@ class ProfanityServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        $configPath = __DIR__ . '/../../config/config.php';
+        $configPath = __DIR__ . '/../../config/profanity-filter.php';
         $this->mergeConfigFrom($configPath, 'profanity-filter');
     }
 
